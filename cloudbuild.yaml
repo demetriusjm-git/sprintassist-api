@@ -4,7 +4,7 @@ steps:
     args:
       - 'build'
       - '-t'
-      - 'us-central-1-docker.pkg.dev/sprintassistai-sandbox-148085/cloud-run-source-deploy/sprintassist-api:$COMMIT_SHA'
+      - 'us-central1-docker.pkg.dev/sprintassistai-sandbox-148085/cloud-run-source-deploy/sprintassist-api:$COMMIT_SHA'
       - '.'
     id: 'Build'
 
@@ -12,7 +12,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - 'us-central-1-docker.pkg.dev/sprintassistai-sandbox-148085/cloud-run-source-deploy/sprintassist-api:$COMMIT_SHA'
+      - 'us-central1-docker.pkg.dev/sprintassistai-sandbox-148085/cloud-run-source-deploy/sprintassist-api:$COMMIT_SHA'
     id: 'Push'
 
   # Deploy container image to Cloud Run
@@ -23,16 +23,16 @@ steps:
       - 'deploy'
       - 'sprintassist-api' # Replace with your Cloud Run service name
       - '--image'
-      - 'us-central-1-docker.pkg.dev/sprintassistai-sandbox-148085/cloud-run-source-deploy/sprintassist-api:$COMMIT_SHA'
+      - 'us-central1-docker.pkg.dev/sprintassistai-sandbox-148085/cloud-run-source-deploy/sprintassist-api:$COMMIT_SHA'
       - '--region'
-      - 'us-central-1' # Replace with your Cloud Run service region
+      - 'us-central1' # Replace with your Cloud Run service region
       - '--platform'
       - 'managed'
       # Add other flags if needed, e.g., --allow-unauthenticated
     id: 'Deploy'
 
 images:
-  - 'us-central-1-docker.pkg.dev/sprintassistai-sandbox-148085/cloud-run-source-deploy/sprintassist-api:$COMMIT_SHA'
+  - 'us-central1-docker.pkg.dev/sprintassistai-sandbox-148085/cloud-run-source-deploy/sprintassist-api:$COMMIT_SHA'
 
 options:
   logging: CLOUD_LOGGING_ONLY
